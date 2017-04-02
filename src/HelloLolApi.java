@@ -12,26 +12,28 @@ public class HelloLolApi {
 
 	public static void main(String[] args) throws MalformedURLException, IOException  {
 		// TODO Auto-generated method stub
-			String somonnerNames = JOptionPane.showInputDialog("Digite seu name");
+			String sumonnerNames = JOptionPane.showInputDialog("Digite seu name");
 			
 			
 			
-			URL lolApiSite = new URL("https://kr.api.riotgames.com/api/lol/KR/v1.4/summoner/by-name/"+ somonnerNames +"?api_key=RGAPI-133cfc7a-22f3-4eef-83f5-2c7ca3d3a5d6");
+			URL lolApiSite = new URL("https://kr.api.riotgames.com/api/lol/KR/v1.4/summoner/by-name/"+ sumonnerNames +"?api_key=RGAPI-133cfc7a-22f3-4eef-83f5-2c7ca3d3a5d6");
 	
 			BufferedReader in = new BufferedReader(new InputStreamReader(lolApiSite.openStream()));
 			
 			String lolApiJson = in.readLine();
 			System.out.println(lolApiJson);
 			
-			JSONObject lolApi = new JSONObject(lolApiSite);
+			JSONObject lolApi = new JSONObject(lolApiJson);
+		
+			int id = lolApi.getJSONObject(sumonnerNames).getInt("id");
+			String name = lolApi.getJSONObject(sumonnerNames).getString("name");
+			int summonerLevel = lolApi.getJSONObject(sumonnerNames).getInt("summonerLevel");
+		
 			
-			String name = lolApi.getJSONObject(somonnerNames).getString("name");
-			String summonerLevel = lolApi.getJSONObject(somonnerNames).getString("summonerLevel");
-			String id = lolApi.getJSONObject(somonnerNames).getString("id");
-			
+			System.out.println(id);
 			System.out.println(name);
 			System.out.println(summonerLevel);
-			System.out.println(id);
+			
 			
 	
 	}
