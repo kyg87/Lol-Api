@@ -68,13 +68,14 @@ public class HelloLolApi {
 			dateFormatStringTime = dateFormat.format(date1);
 			System.out.println(dateFormatStringTime);
 		
-			
+			try{
 			URL currentInGameURL = new URL("https://kr.api.riotgames.com/observer-mode/rest/consumer/getSpectatorGameInfo/KR/"+id+"?api_key=RGAPI-133cfc7a-22f3-4eef-83f5-2c7ca3d3a5d6");
 	
+			System.out.println(currentInGameURL);
 			
 			BufferedReader ino = new BufferedReader(new InputStreamReader(currentInGameURL.openStream()));
 			
-			
+		
 			String lolApiJsonao = ino.readLine();
 			
 			JSONObject lolApiao = new JSONObject(lolApiJsona);
@@ -89,6 +90,10 @@ public class HelloLolApi {
 		
 			long gameStartTime = lolApiao.getLong("gameStartTime");
 			System.out.println(gameStartTime);
+			}
+			catch(Exception e){
+				System.out.println(e);
+			}
 	}
 
 }
